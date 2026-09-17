@@ -1,0 +1,64 @@
+{
+  "id": "what-to-choose",
+  "title": "Що обрати дитині?",
+  "subtitle": "5 коротких запитань — і ми покажемо 3 найкращі варіанти на карті.",
+  "questions": [
+    {
+      "id": "age",
+      "title": "Скільки років учасникові?",
+      "type": "single",
+      "required": true,
+      "options": [
+        { "id": "age-6-9", "label": "6–9 років", "emoji": "🧒", "value": { "age": 8 } },
+        { "id": "age-10-13", "label": "10–13 років", "emoji": "🧑", "value": { "age": 11 } },
+        { "id": "age-14-17", "label": "14–17 років", "emoji": "🧑‍🎓", "value": { "age": 15 } },
+        { "id": "age-18-plus", "label": "18+ років", "emoji": "🧑‍💼", "value": { "age": 25 } }
+      ]
+    },
+    {
+      "id": "interests",
+      "title": "Що найбільше подобається робити?",
+      "subtitle": "Можна обрати кілька варіантів.",
+      "type": "multi",
+      "required": true,
+      "options": [
+        { "id": "build", "label": "Будувати й конструювати", "emoji": "🔧", "value": { "interests": ["robotics", "3d-modeling", "electronics"] } },
+        { "id": "code", "label": "Створювати ігри та програми", "emoji": "💻", "value": { "interests": ["programming", "game-dev"] } },
+        { "id": "draw", "label": "Малювати й оживляти персонажів", "emoji": "🎨", "value": { "interests": ["digital-design", "animation"] } },
+        { "id": "explore", "label": "Досліджувати природу та космос", "emoji": "🔭", "value": { "interests": ["natural-science", "astronomy"] } },
+        { "id": "numbers", "label": "Розв'язувати задачі й працювати з числами", "emoji": "🧮", "value": { "interests": ["olympiad-math", "data-analysis"] } }
+      ]
+    },
+    {
+      "id": "format",
+      "title": "Який формат занять зручніший?",
+      "type": "single",
+      "required": true,
+      "options": [
+        { "id": "format-offline", "label": "Наживо, в класі", "emoji": "🏫", "value": { "format": ["offline", "hybrid"] } },
+        { "id": "format-online", "label": "Онлайн з дому", "emoji": "🏠", "value": { "format": ["online", "hybrid"] } },
+        { "id": "format-any", "label": "Не важливо", "emoji": "🤷", "value": { "format": [] } }
+      ]
+    },
+    {
+      "id": "price",
+      "title": "Розглядаєте платні заняття?",
+      "type": "single",
+      "required": true,
+      "options": [
+        { "id": "price-free", "label": "Лише безкоштовні", "emoji": "🎁", "value": { "price": "free" } },
+        { "id": "price-any", "label": "Підійдуть і платні", "emoji": "💳", "value": { "price": "any" } }
+      ]
+    },
+    {
+      "id": "distance",
+      "title": "Чи важливо, щоб заклад був поруч?",
+      "type": "single",
+      "required": false,
+      "options": [
+        { "id": "distance-near", "label": "Так, шукати біля мене", "emoji": "📍", "value": { "useLocation": true } },
+        { "id": "distance-any", "label": "Не важливо", "emoji": "🗺️", "value": { "useLocation": false } }
+      ]
+    }
+  ]
+}

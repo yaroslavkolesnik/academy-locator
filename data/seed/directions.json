@@ -1,0 +1,79 @@
+[
+  {
+    "id": "natural-science",
+    "slug": "natural-science",
+    "name": "Природничі досліди",
+    "categoryCode": "S",
+    "keywords": ["біологія", "хімія", "фізика", "лабораторія", "досліди", "природа", "екологія"]
+  },
+  {
+    "id": "astronomy",
+    "slug": "astronomy",
+    "name": "Астрономія",
+    "categoryCode": "S",
+    "keywords": ["космос", "зорі", "планети", "телескоп", "всесвіт"]
+  },
+  {
+    "id": "programming",
+    "slug": "programming",
+    "name": "Програмування",
+    "categoryCode": "T",
+    "keywords": ["python", "код", "кодинг", "it", "айті", "алгоритми", "розробка"]
+  },
+  {
+    "id": "robotics",
+    "slug": "robotics",
+    "name": "Робототехніка",
+    "categoryCode": "T",
+    "keywords": ["роботи", "arduino", "ардуїно", "lego", "лего", "конструювання", "мікроконтролери"]
+  },
+  {
+    "id": "game-dev",
+    "slug": "game-dev",
+    "name": "Розробка ігор",
+    "categoryCode": "T",
+    "keywords": ["ігри", "геймдев", "unity", "scratch", "скретч", "gamedev"]
+  },
+  {
+    "id": "3d-modeling",
+    "slug": "3d-modeling",
+    "name": "3D-моделювання та друк",
+    "categoryCode": "E",
+    "keywords": ["3d", "3д", "моделювання", "3d-друк", "fusion 360", "креслення", "cad"]
+  },
+  {
+    "id": "electronics",
+    "slug": "electronics",
+    "name": "Електроніка",
+    "categoryCode": "E",
+    "keywords": ["схеми", "паяння", "радіо", "електрика", "мікросхеми"]
+  },
+  {
+    "id": "digital-design",
+    "slug": "digital-design",
+    "name": "Цифровий дизайн",
+    "categoryCode": "A",
+    "keywords": ["дизайн", "ілюстрація", "малювання", "графіка", "procreate", "figma"]
+  },
+  {
+    "id": "animation",
+    "slug": "animation",
+    "name": "Анімація",
+    "categoryCode": "A",
+    "keywords": ["мультиплікація", "мультфільми", "stop motion", "персонажі"]
+  },
+  {
+    "id": "olympiad-math",
+    "slug": "olympiad-math",
+    "name": "Олімпіадна математика",
+    "categoryCode": "M",
+    "keywords": ["математика", "олімпіади", "задачі", "логіка", "нмт"]
+  },
+  {
+    "id": "data-analysis",
+    "slug": "data-analysis",
+    "name": "Аналіз даних",
+    "categoryCode": "M",
+    "keywords": ["дані", "статистика", "excel", "sql", "аналітика", "data"]
+  }
+]

@@ -1,0 +1,18 @@
+node_modules/
+.env
+*.log
+.DS_Store
+CLAUDE.local.md
+
+# інші варіанти .env, крім прикладу
+.env.*
+!.env.example
+
+# особисті налаштування Claude Code
+.claude/settings.local.json
+
+# IDE та системні файли
+.vscode/
+.idea/
+Thumbs.db
+coverage/

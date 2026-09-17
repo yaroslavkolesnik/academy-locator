@@ -1,0 +1,28 @@
+# Render Blueprint: New → Blueprint → вибрати репозиторій.
+# Файл має лежати в корені репозиторію (якщо корінь — папка вище, додайте rootDir: academy-locator).
+services:
+  - type: web
+    name: academy-locator
+    runtime: node
+    plan: free
+    region: frankfurt
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: NODE_ENV
+        value: production
+      # Рядок підключення MongoDB Atlas — вводиться вручну під час створення Blueprint
+      - key: MONGODB_URI
+        sync: false
+      - key: MONGODB_DB
+        value: academy_locator
+      # Render згенерує випадковий токен; подивитися його: Dashboard → Environment
+      - key: ADMIN_TOKEN
+        generateValue: true
+      # Лише якщо фронтенд буде на іншому домені (через кому)
+      - key: CORS_ORIGIN
+        sync: false

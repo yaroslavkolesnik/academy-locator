@@ -1,0 +1,7 @@
+[
+  { "code": "S", "name": "Наука", "nameEn": "Science", "color": "#16A34A", "icon": "flask-conical" },
+  { "code": "T", "name": "Технології", "nameEn": "Technology", "color": "#2563EB", "icon": "cpu" },
+  { "code": "E", "name": "Інженерія", "nameEn": "Engineering", "color": "#EA580C", "icon": "cog" },
+  { "code": "A", "name": "Мистецтво", "nameEn": "Arts", "color": "#DB2777", "icon": "palette" },
+  { "code": "M", "name": "Математика", "nameEn": "Mathematics", "color": "#7C3AED", "icon": "sigma" }
+]
