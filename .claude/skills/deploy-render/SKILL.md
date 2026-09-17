@@ -1,6 +1,6 @@
 ---
 name: deploy-render
-description: Deploying Academy Locator to Render with MongoDB Atlas — render.yaml, environment variables, Atlas network access, post-deploy checks, free-tier sleep, and the helmet CSP changes needed once the frontend is added. Use when preparing or debugging a deploy, changing render.yaml or env vars, or adding frontend assets that load external resources.
+description: Deploying Academy Locator to Render with MongoDB Atlas — render.yaml, environment variables, Atlas network access, post-deploy checks, free-tier sleep, and how the built frontend, CSP and map tiles are served. Use when preparing or debugging a deploy, changing render.yaml or env vars, or adding frontend assets that load external resources.
 ---
 
 # Deploy to Render
@@ -11,7 +11,7 @@ changes and tell the user what to push and what to click.
 ## Blueprint (`render.yaml`)
 
 - Must sit at the **repository root**. If the repo root is a parent folder, add `rootDir: academy-locator`.
-- One free web service in `frankfurt`, `NODE_VERSION=22`, `npm ci` → `npm start`, `healthCheckPath: /api/health`,
+- One free web service in `frankfurt`, `NODE_VERSION=22`, `npm ci --include=dev && npm run build` → `npm start`, `healthCheckPath: /api/health`,
   `autoDeploy: true` (every push to the default branch deploys).
 - Env vars: `MONGODB_URI` (`sync: false`, entered in the Render UI), `MONGODB_DB=academy_locator`,
   `ADMIN_TOKEN` (`generateValue: true`, visible in Dashboard → Environment), optional `CORS_ORIGIN`.
@@ -36,21 +36,13 @@ changes and tell the user what to push and what to click.
 
 ## Frontend on the same service
 
-Static files are served from `public/` after `/api`, so the API keeps priority. helmet's default CSP blocks
-external scripts, styles and images. When adding Leaflet with OpenStreetMap tiles, extend the CSP in `app.js`
-rather than disabling it, e.g.:
-
-```js
-helmet({
-  contentSecurityPolicy: {
-    directives: {
-      'img-src': ["'self'", 'data:', 'https://*.tile.openstreetmap.org'],
-      'script-src': ["'self'", 'https://cdn.jsdelivr.net'],   // only if Leaflet is loaded from a CDN
-      'style-src': ["'self'", 'https://cdn.jsdelivr.net'],
-    },
-  },
-})
-```
-
-Bundling Leaflet locally into `public/` avoids the CDN entries. Verify in the browser console that no CSP
-violations remain.
+- Render builds it: `npm ci --include=dev && npm run build` (dev dependencies are needed for Vite even with
+  `NODE_ENV=production`). `public/` is git-ignored.
+- `src/app.js` serves `public/` (hashed `assets/` cached as immutable, `index.html` no-cache) and falls back to
+  `index.html` for client routes; `/api/*` is never intercepted.
+- CSP is helmet's default plus `img-src https://tile.openstreetmap.org`. Fonts and Leaflet are bundled, so no CDN
+  entries. `Referrer-Policy: strict-origin-when-cross-origin` is required — OSM serves "Access blocked" tiles to
+  requests without `Referer` (`docs/tech/2026-09-17-map-tiles-carto-to-osm.md`).
+- OSM's tile policy tolerates a low-traffic demo; real traffic needs a commercial tile provider (new CSP entry +
+  test in `tests/api/spa.test.js`).
+- Geolocation ("Поруч зі мною") works only on HTTPS or localhost — test it on the Render URL, not over LAN IP.

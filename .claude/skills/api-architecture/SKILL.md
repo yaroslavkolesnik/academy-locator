@@ -9,7 +9,8 @@ description: Architecture of the Academy Locator API and the procedure for addin
 
 ```
 src/server.js     loads .env, createStore(), createApp(), listen, SIGTERM → store.close()
-src/app.js        createApp({ store, config, logger }) — middleware, routers, shared deps; no listen
+src/app.js        createApp({ store, config, logger, publicDir }) — middleware, routers, shared deps; no listen;
+                  also serves public/ (built frontend) with an SPA fallback, CSP + Referrer-Policy for map tiles
 src/routes/*      parse input (parseOrThrow) → call services → res.json; nothing else
 src/services/*    pure functions over plain arrays; build every response body
 src/store/*       memoryStore | mongoStore with one async interface

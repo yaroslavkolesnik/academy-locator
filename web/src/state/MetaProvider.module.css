@@ -1,0 +1,8 @@
+.boot {
+  display: grid;
+  align-content: center;
+  gap: var(--space-5);
+  width: min(420px, calc(100vw - 32px));
+  min-height: 100dvh;
+  margin: 0 auto;
+}

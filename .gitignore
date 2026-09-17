@@ -16,3 +16,6 @@ CLAUDE.local.md
 .idea/
 Thumbs.db
 coverage/
+
+# збірка фронтенду (npm run build)
+/public/

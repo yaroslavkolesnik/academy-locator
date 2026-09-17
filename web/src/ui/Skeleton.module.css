@@ -1,0 +1,46 @@
+.wrapper {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.slow {
+  padding: var(--space-3);
+  border-radius: var(--radius-sm);
+  background: var(--color-primary-soft);
+  color: var(--color-primary-hover);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.card {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.line,
+.lineWide {
+  height: 12px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, #e2e8f0 0%, #f1f5f9 50%, #e2e8f0 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s linear infinite;
+}
+
+.line {
+  width: 55%;
+}
+
+.lineWide {
+  width: 85%;
+  height: 16px;
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}

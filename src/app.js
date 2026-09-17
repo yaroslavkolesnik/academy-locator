@@ -1,3 +1,5 @@
+import { existsSync } from 'node:fs';
+import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import compression from 'compression';
 import cors from 'cors';
@@ -20,14 +22,23 @@ import {
 const PUBLIC_DIR = fileURLToPath(new URL('../public/', import.meta.url));
 
 // Налаштований Express-додаток без listen — використовується server.js і тестами
-export function createApp({ store, config, logger = console }) {
+export function createApp({ store, config, logger = console, publicDir = PUBLIC_DIR }) {
   const app = express();
 
   // Render ставить один проксі перед сервісом — потрібно для коректного IP у rate limit
   app.set('trust proxy', 1);
   app.disable('x-powered-by');
 
-  app.use(helmet());
+  // CSP за замовчуванням helmet + тайли карти OpenStreetMap (усе інше — з власного домену)
+  app.use(
+    helmet({
+      contentSecurityPolicy: {
+        directives: { 'img-src': ["'self'", 'data:', 'https://tile.openstreetmap.org'] },
+      },
+      // Тайли OSM без заголовка Referer повертають заглушку «Access blocked»; стороннім сайтам іде лише origin
+      referrerPolicy: { policy: 'strict-origin-when-cross-origin' },
+    }),
+  );
   app.use(compression());
   if (config.corsOrigins.length > 0) app.use(cors({ origin: config.corsOrigins }));
   app.use(express.json({ limit: '20kb' }));
@@ -80,7 +91,25 @@ export function createApp({ store, config, logger = console }) {
   api.use(notFoundHandler);
 
   app.use('/api', api);
-  app.use(express.static(PUBLIC_DIR));
+  // Зібраний фронтенд: хешовані assets кешуються назавжди, index.html — ні
+  app.use(
+    express.static(publicDir, {
+      index: false,
+      setHeaders(res, filePath) {
+        if (filePath.includes(`${path.sep}assets${path.sep}`)) {
+          res.set('Cache-Control', 'public, max-age=31536000, immutable');
+        }
+      },
+    }),
+  );
+
+  // SPA fallback: клієнтські маршрути (/institutions/khpi) після перезавантаження віддають index.html
+  const indexHtml = path.join(publicDir, 'index.html');
+  app.get(/^(?!\/api(\/|$)).*/, (req, res, next) => {
+    if (path.extname(req.path) || !existsSync(indexHtml)) return next();
+    res.set('Cache-Control', 'no-cache');
+    res.sendFile(indexHtml);
+  });
 
   app.use(createErrorHandler({ logger }));
   return app;

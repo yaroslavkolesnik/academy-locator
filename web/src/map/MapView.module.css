@@ -1,0 +1,19 @@
+.map {
+  width: 100%;
+  height: 100%;
+}
+
+/* Приглушена підкладка OSM: кольорові STEAM-мітки мають бути помітнішими за карту */
+.map :global(.leaflet-tile-pane) {
+  filter: saturate(0.3) brightness(1.05) contrast(0.9);
+}
+
+@media (max-width: 1023px) {
+  .map :global(.leaflet-control-zoom) {
+    display: none;
+  }
+
+  .map :global(.leaflet-bottom.leaflet-right) {
+    bottom: 50dvh;
+  }
+}

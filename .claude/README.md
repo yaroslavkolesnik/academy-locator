@@ -26,10 +26,8 @@ When the agent gets something wrong, fix the rule or the skill rather than only 
 | `seed-data` | real vs fictional data, verifying institutions, invariants, tests tied to seed | `check-seed.mjs` |
 | `verify-api` | running the server on a spare port, end-to-end demo flow, stopping it on Windows | `smoke.mjs` |
 | `mongo-ops` | databases, seed/reset, Mongo tests, local SRV DNS issue | `dns-preload.mjs` |
-| `deploy-render` | render.yaml, env vars, Atlas network access, free tier, CSP for the frontend | — |
-
-Candidates for later: a `frontend` skill (Leaflet map, consuming `/api/meta`, served from `public/`) once the
-frontend design is approved.
+| `deploy-render` | render.yaml, env vars, Atlas network access, free tier, CSP and map tiles | — |
+| `frontend` | web/: state in URL, providers, panels, forms, tests with mocked fetch, browser checks in a hidden window | — |
 
 ## Documents
 

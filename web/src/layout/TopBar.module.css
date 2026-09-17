@@ -1,0 +1,10 @@
+.topBar {
+  position: absolute;
+  z-index: 1000;
+  top: calc(var(--space-3) + env(safe-area-inset-top));
+  right: var(--space-3);
+  left: var(--space-3);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}

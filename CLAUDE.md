@@ -19,7 +19,7 @@ It holds only rules and routing; domain knowledge lives in skills (`.claude/skil
 
 ## Project
 
-Academy Locator — MVP demo map of STEAM education in Kharkiv. Node.js ≥20 ESM, Express 4, Zod 3, MongoDB Atlas with in-memory fallback, Render. Frontend not built yet; it will live in `public/`.
+Academy Locator — MVP demo map of STEAM education in Kharkiv. Node.js ≥20 ESM, Express 4, Zod 3, MongoDB Atlas with in-memory fallback, Render. Frontend: React + Vite in `web/`, built into `public/` and served by the same Express app.
 
 ## Commands
 
@@ -29,6 +29,8 @@ Academy Locator — MVP demo map of STEAM education in Kharkiv. Node.js ≥20 ES
 | `npm test` | all tests; Mongo tests skip without `MONGODB_URI` |
 | `node --test <file>` / `node --test --test-name-pattern="<name>"` | one file / by name |
 | `npm run test:mongo` | adds Mongo tests against Atlas |
+| `npm run dev:web` | Vite on :5173, proxies `/api` to `npm run dev` |
+| `npm run test:web` / `npm run build` | frontend tests (Vitest) / build into `public/` |
 | `npm run seed [-- --reset]` | read skill `mongo-ops` first |
 
 ## Where the knowledge lives
@@ -36,10 +38,11 @@ Academy Locator — MVP demo map of STEAM education in Kharkiv. Node.js ≥20 ES
 | Working on | Read |
 |---|---|
 | architecture, adding or changing an endpoint, filters, errors | skill `api-architecture` |
+| anything under `web/`: panels, map, filters in URL, forms, browser checks | skill `frontend` |
 | `data/seed/*.json` and tests tied to seed values | skill `seed-data` |
 | running the server, end-to-end checks | skill `verify-api` |
 | MongoDB Atlas, test DBs, seed, `"store":"memory"` locally | skill `mongo-ops` |
-| Render, env vars, CSP for the frontend | skill `deploy-render` |
+| Render, env vars, CSP and map tiles | skill `deploy-render` |
 | approved designs; past investigations | `docs/specs/`; `docs/tech/` |
 | map of this agent setup | `.claude/README.md` |
 

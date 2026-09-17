@@ -1,0 +1,41 @@
+.viewport {
+  position: fixed;
+  z-index: 2000;
+  left: 50%;
+  bottom: var(--space-5);
+  transform: translateX(-50%);
+  width: min(440px, calc(100vw - 32px));
+  pointer-events: none;
+}
+
+.toast {
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  background: var(--color-text);
+  color: #fff;
+  font-weight: 600;
+  box-shadow: var(--shadow-lg);
+  animation: toast-in var(--duration-base) var(--ease-out);
+}
+
+.danger {
+  background: #991b1b;
+}
+
+.success {
+  background: #166534;
+}
+
+@media (max-width: 1023px) {
+  .viewport {
+    top: calc(var(--space-4) + env(safe-area-inset-top));
+    bottom: auto;
+  }
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}

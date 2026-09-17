@@ -1,0 +1,59 @@
+.card {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: inherit;
+  text-decoration: none;
+  transition: border-color var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) var(--ease-out);
+}
+
+.card:hover {
+  border-color: #cbd5e1;
+  box-shadow: var(--shadow-md);
+}
+
+/* Приглушення без opacity: сірий текст з opacity 0.6 мав контраст 2.9:1 */
+.muted {
+  background: var(--color-surface-muted);
+}
+
+.muted .title {
+  color: var(--color-text-muted);
+}
+
+.top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.title {
+  font-weight: 800;
+}
+
+.description {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.facts > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.facts svg {
+  color: var(--color-text-muted);
+}

@@ -1,0 +1,8 @@
+.actions {
+  position: absolute;
+  z-index: 900;
+  top: var(--space-4);
+  right: var(--space-4);
+  display: flex;
+  gap: var(--space-2);
+}

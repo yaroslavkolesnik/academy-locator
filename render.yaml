@@ -6,7 +6,8 @@ services:
     runtime: node
     plan: free
     region: frankfurt
-    buildCommand: npm ci
+    # --include=dev: NODE_ENV=production інакше пропускає Vite, і збірка падає
+    buildCommand: npm ci --include=dev && npm run build
     startCommand: npm start
     healthCheckPath: /api/health
     autoDeploy: true

@@ -1,6 +1,7 @@
-# Academy Locator — API
+# Academy Locator
 
-Інтерактивна карта STEAM-освіти Харкова (MVP). Node.js + Express, MongoDB Atlas з фолбеком на пам'ять.
+Інтерактивна карта STEAM-освіти Харкова (MVP). Node.js + Express, MongoDB Atlas з фолбеком на пам'ять;
+фронтенд — React + Vite + Leaflet.
 Заклади реальні; курси, розклади, ціни та кількість місць — демонстраційні.
 
 ## Запуск
@@ -20,6 +21,20 @@ npm run dev              # http://localhost:3000/api/health
 | `npm run seed -- --reset` | очистити заклади, курси, реєстрації й залити seed з нуля — перед показом |
 
 Сервер при старті сам заливає seed у порожні колекції, тож `npm run seed` потрібен лише для оновлення даних.
+
+## Фронтенд
+
+React + Vite у `web/`, збирається в `public/` (не в git) і віддається тим самим сервером.
+
+| Команда | Що робить |
+|---|---|
+| `npm run build` → `npm start` | зібрана версія на http://localhost:3000 — як на Render |
+| `npm run dev` + `npm run dev:web` | API на :3000 і фронтенд з автооновленням на http://localhost:5173 |
+| `npm run test:web` | тести фронтенду (Vitest) |
+
+Екрани: карта з фільтрами й пошуком, картка закладу, курси напрямку, курс з реєстрацією, «Додати заклад»,
+квіз «Що обрати дитині?», модерація `/admin` (вхід за `ADMIN_TOKEN`).
+Підкладка карти — OpenStreetMap; «Поруч зі мною» працює лише на HTTPS або localhost.
 
 ## Змінні оточення
 
@@ -67,8 +82,8 @@ npm run dev              # http://localhost:3000/api/health
 
 1. **MongoDB Atlas → Network Access:** додати `0.0.0.0/0` — у Render free немає статичних IP.
 2. Запушити проєкт у GitHub (`render.yaml` — у корені репозиторію).
-3. Render → **New → Blueprint** → вибрати репозиторій → ввести `MONGODB_URI`.
-4. Після деплою: `https://<сервіс>.onrender.com/api/health` має повернути `"store": "mongo"`.
+3. Render → **New → Blueprint** → вибрати репозиторій → ввести `MONGODB_URI`. Build Command уже в `render.yaml`: `npm ci --include=dev && npm run build`.
+4. Після деплою: `https://<сервіс>.onrender.com/api/health` має повернути `"store": "mongo"`, а `https://<сервіс>.onrender.com/` — карту.
 5. `ADMIN_TOKEN` згенерується автоматично — його видно в Dashboard → Environment.
 
 Free-сервіс засинає після ~15 хв без запитів і прокидається до хвилини — відкрийте `/api/health` перед показом.

@@ -1,0 +1,37 @@
+.form {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.course {
+  display: grid;
+  gap: 2px;
+  padding: var(--space-3);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-muted);
+  font-size: var(--text-sm);
+}
+
+.formError {
+  padding: var(--space-3);
+  border-radius: var(--radius-sm);
+  background: var(--color-danger-soft);
+  color: #b91c1c;
+  font-weight: 700;
+}
+
+.success {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) 0;
+  text-align: center;
+}
+
+.successIcon {
+  color: var(--color-success);
+}
+
+.muted {
+  color: var(--color-text-muted);
+}

@@ -1,0 +1,37 @@
+.al-marker {
+  border-radius: 50%;
+  filter: drop-shadow(0 2px 4px rgb(15 23 42 / 25%));
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.al-marker:hover {
+  transform: scale(1.08);
+}
+
+.al-marker svg {
+  display: block;
+}
+
+.al-marker--highlighted::after {
+  position: absolute;
+  inset: -6px;
+  border: 3px solid var(--color-primary);
+  border-radius: 50%;
+  content: '';
+  animation: al-pulse 1.6s var(--ease-out) infinite;
+}
+
+.al-pick {
+  filter: drop-shadow(0 4px 6px rgb(15 23 42 / 30%));
+}
+
+@keyframes al-pulse {
+  from {
+    opacity: 0.9;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+}

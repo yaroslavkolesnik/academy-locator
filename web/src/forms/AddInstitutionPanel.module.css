@@ -1,0 +1,23 @@
+.status {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+}
+
+.hint {
+  background: var(--color-surface-muted);
+  color: var(--color-text-muted);
+}
+
+.ok {
+  background: var(--color-success-soft);
+  color: #15803d;
+}
+
+.error {
+  background: var(--color-danger-soft);
+  color: #b91c1c;
+}
